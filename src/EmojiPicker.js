@@ -1,5 +1,5 @@
 import React from "react";
-//import { IconButton, Paper, Grid } from "@material-ui/core";
+import { IconButton, Paper, Grid } from "@material-ui/core";
 
 const EmojiPicker = (props) => {
   let faces = [
@@ -88,9 +88,13 @@ const EmojiPicker = (props) => {
     "💩",
   ];
   return (
-    <div>
-      Hello
-    </div>
+    <Paper>
+      <Grid container>
+        {faces.map(function (el) {
+          return <Grid item sm={2} md={12} style={{ fontSize: "25px" }}>{el}</Grid>;
+        })}
+      </Grid>
+    </Paper>
   );
 };
 

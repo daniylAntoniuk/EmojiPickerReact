@@ -1,101 +1,135 @@
 import React from "react";
-import { IconButton, Paper, Grid } from "@material-ui/core";
+import { IconButton, Paper, Grid, Menu } from "@material-ui/core";
+import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
+export default class extends React.Component {
+  //const [anchorEl, setAnchorEl] = React.useState(null);
+  state={
+    anchorEl:null,
+  };
+  render() {
+    const handleClick = (event) => {
+      this.setState({anchorEl:event.currentTarget});
+    };
 
-const EmojiPicker = (props) => {
-  let faces = [
-    "😀",
-    "😁",
-    "😂",
-    "🤣",
-    "😃",
-    "😄",
-    "😅",
-    "😆",
-    "😉",
-    "😊",
-    "😋",
-    "😎",
-    "😍",
-    "😘",
-    "😗",
-    "😙",
-    "😚",
-    "🙂",
-    "🤗",
-    "🤔",
-    "😐",
-    "😑",
-    "😶",
-    "🙄",
-    "😏",
-    "😣",
-    "😥",
-    "😮",
-    "🤐",
-    "😯",
-    "😪",
-    "😫",
-    "😴",
-    "😌",
-    "🤓",
-    "😛",
-    "😜",
-    "😝",
-    "🤤",
-    "😒",
-    "😓",
-    "😔",
-    "😕",
-    "🙃",
-    "🤑",
-    "😲",
-    "🙁",
-    "😖",
-    "😞",
-    "😟",
-    "😤",
-    "😢",
-    "😭",
-    "😦",
-    "😧",
-    "😨",
-    "😩",
-    "😬",
-    "😰",
-    "😱",
-    "😳",
-    "😵",
-    "😡",
-    "😠",
-    "😇",
-    "🤠",
-    "🤡",
-    "🤥",
-    "😷",
-    "🤒",
-    "🤕",
-    "🤢",
-    "🤧",
-    "😈",
-    "👿",
-    "👹",
-    "👺",
-    "💀",
-    "👻",
-    "👽",
-    "👾",
-    "🤖",
-    "💩",
-  ];
-  return (
-    <Paper>
-      <Grid container>
-        {faces.map(function (el) {
-          return <Grid item sm={2} md={12} style={{ fontSize: "25px" }}>{el}</Grid>;
-        })}
-      </Grid>
-    </Paper>
-  );
-};
+    const handleClose = () => {
+      this.setState({anchorEl:null});
+    };
 
-export default EmojiPicker;
+    let faces = [
+      "😀",
+      "😁",
+      "😂",
+      "🤣",
+      "😃",
+      "😄",
+      "😅",
+      "😆",
+      "😉",
+      "😊",
+      "😋",
+      "😎",
+      "😍",
+      "😘",
+      "😗",
+      "😙",
+      "😚",
+      "🙂",
+      "🤗",
+      "🤔",
+      "😐",
+      "😑",
+      "😶",
+      "🙄",
+      "😏",
+      "😣",
+      "😥",
+      "😮",
+      "🤐",
+      "😯",
+      "😪",
+      "😫",
+      "😴",
+      "😌",
+      "🤓",
+      "😛",
+      "😜",
+      "😝",
+      "🤤",
+      "😒",
+      "😓",
+      "😔",
+      "😕",
+      "🙃",
+      "🤑",
+      "😲",
+      "🙁",
+      "😖",
+      "😞",
+      "😟",
+      "😤",
+      "😢",
+      "😭",
+      "😦",
+      "😧",
+      "😨",
+      "😩",
+      "😬",
+      "😰",
+      "😱",
+      "😳",
+      "😵",
+      "😠",
+      "😇",
+      "🤠",
+      "🤡",
+      "🤥",
+      "😷",
+      "🤒",
+      "🤕",
+      "🤢",
+      "🤧",
+      "😡",
+      "😈",
+      "👿",
+      "👹",
+      "👺",
+      "💀",
+      "👻",
+      "👽",
+      "👾",
+      "🤖",
+      "💩",
+    ];
+    const {anchorEl} = this.state;
+    return (
+      <>
+        <IconButton
+          aria-controls="simple-menu"
+          aria-haspopup="true"
+          onClick={handleClick}
+          onMouseEnter={handleClick}
+        >
+          <InsertEmoticonIcon />
+        </IconButton>
+        <Menu
+          id="simple-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+          onMouseLeave={handleClose}
+        >
+          <Grid container>
+            {faces.map(function (el) {
+              return (
+                <Grid item xs={2} style={{ fontSize: "25px" }}>
+                  {el}
+                </Grid>
+              );
+            })}
+          </Grid>
+        </Menu>
+      </>
+    );
+  }
+}

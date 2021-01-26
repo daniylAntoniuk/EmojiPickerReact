@@ -1,9 +1,14 @@
 {
   "name": "miracle-emoji-picker-react",
-  "version": "0.0.64",
+  "version": "0.0.70",
   "babel": {
     "presets": [
       "@babel/preset-react"
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-proposal-class-properties"
+      ]
     ]
   },
   "description": "",
@@ -14,6 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "@material-ui/core": "4.9.7",
+    "@material-ui/icons": "^4.9.1",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
@@ -49,6 +55,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/preset-react": "^7.12.10"
   }
 }

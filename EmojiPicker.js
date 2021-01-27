@@ -3,7 +3,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 import React from "react";
 import { IconButton, Paper, Grid, Menu } from "@material-ui/core";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
-export default class extends React.Component {
+import PropTypes from "prop-types";
+export default class Emoji extends React.Component {
   constructor(...args) {
     super(...args);
 
@@ -29,20 +30,30 @@ export default class extends React.Component {
     const {
       anchorEl
     } = this.state;
+    const {
+      buttonColour
+    } = this.props;
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(IconButton, {
+      color: buttonColour == undefined ? "default" : buttonColour,
       "aria-controls": "simple-menu",
       "aria-haspopup": "true",
-      onClick: handleClick,
-      onMouseEnter: handleClick
+      onClick: handleClick //onMouseEnter={handleClick}
+
     }, /*#__PURE__*/React.createElement(InsertEmoticonIcon, null)), /*#__PURE__*/React.createElement(Menu, {
       id: "simple-menu",
       anchorEl: anchorEl,
+      style: {
+        width: "100%"
+      },
       keepMounted: true,
       open: Boolean(anchorEl),
-      onClose: handleClose,
-      onMouseLeave: handleClose
+      onClose: handleClose //onMouseLeave={handleClose}
+
     }, /*#__PURE__*/React.createElement(Grid, {
-      container: true
+      container: true,
+      style: {
+        width: "100%"
+      }
     }, faces.map(function (el) {
       return /*#__PURE__*/React.createElement(Grid, {
         item: true,
@@ -50,8 +61,11 @@ export default class extends React.Component {
         style: {
           fontSize: "25px"
         }
-      }, el);
+      }, /*#__PURE__*/React.createElement(IconButton, null, el));
     }))));
   }
 
 }
+Emoji.propTypes = {
+  buttonColour: PropTypes.oneOf(["primary", "secondary", "default"])
+};

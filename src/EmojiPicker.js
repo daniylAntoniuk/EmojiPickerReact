@@ -1,18 +1,20 @@
 import React from "react";
 import { IconButton, Paper, Grid, Menu } from "@material-ui/core";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
-export default class extends React.Component {
+import PropTypes from "prop-types";
+
+export default class Emoji extends React.Component {
   //const [anchorEl, setAnchorEl] = React.useState(null);
-  state={
-    anchorEl:null,
+  state = {
+    anchorEl: null,
   };
   render() {
     const handleClick = (event) => {
-      this.setState({anchorEl:event.currentTarget});
+      this.setState({ anchorEl: event.currentTarget });
     };
 
     const handleClose = () => {
-      this.setState({anchorEl:null});
+      this.setState({ anchorEl: null });
     };
 
     let faces = [
@@ -100,30 +102,33 @@ export default class extends React.Component {
       "🤖",
       "💩",
     ];
-    const {anchorEl} = this.state;
+    const { anchorEl } = this.state;
+    const { buttonColour } = this.props;
     return (
       <>
         <IconButton
+          color={buttonColour == undefined ? "default" : buttonColour}
           aria-controls="simple-menu"
           aria-haspopup="true"
           onClick={handleClick}
-          onMouseEnter={handleClick}
+          //onMouseEnter={handleClick}
         >
           <InsertEmoticonIcon />
         </IconButton>
         <Menu
           id="simple-menu"
           anchorEl={anchorEl}
+          style={{ width: "100%" }}
           keepMounted
           open={Boolean(anchorEl)}
           onClose={handleClose}
-          onMouseLeave={handleClose}
+          //onMouseLeave={handleClose}
         >
-          <Grid container>
+          <Grid container style={{ width: "100%" }}>
             {faces.map(function (el) {
               return (
                 <Grid item xs={2} style={{ fontSize: "25px" }}>
-                  {el}
+                  <IconButton>{el}</IconButton>
                 </Grid>
               );
             })}
@@ -133,3 +138,6 @@ export default class extends React.Component {
     );
   }
 }
+Emoji.propTypes = {
+  buttonColour: PropTypes.oneOf(["primary", "secondary", "default"]),
+};

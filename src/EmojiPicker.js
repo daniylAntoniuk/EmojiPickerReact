@@ -1,5 +1,5 @@
 import React from "react";
-import { IconButton, Paper, Grid, Menu } from "@material-ui/core";
+import { IconButton, Paper, Grid, Menu, MenuItem } from "@material-ui/core";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import PropTypes from "prop-types";
 
@@ -104,6 +104,11 @@ export default class Emoji extends React.Component {
     ];
     const { anchorEl } = this.state;
     const { buttonColour } = this.props;
+    const click = (e,el) => {
+      console.log(e,el);
+      this.props.onEmojiSelect(el);
+      this.setState({ anchorEl: null });
+    };
     return (
       <>
         <IconButton
@@ -124,15 +129,15 @@ export default class Emoji extends React.Component {
           onClose={handleClose}
           //onMouseLeave={handleClose}
         >
-          <Grid container style={{ width: "100%" }}>
-            {faces.map(function (el) {
-              return (
-                <Grid item xs={2} style={{ fontSize: "25px" }}>
-                  <IconButton>{el}</IconButton>
-                </Grid>
-              );
-            })}
-          </Grid>
+            <Grid container style={{ width: "350px" }}>
+              {faces.map(function (el) {
+                return (
+                  <Grid item xs={2} style={{ fontSize: "25px" }}>
+                    <IconButton onClick={(e)=>{console.log(el);click(e,el)}}>{el}</IconButton>
+                  </Grid>
+                );
+              })}
+            </Grid>
         </Menu>
       </>
     );
@@ -140,4 +145,5 @@ export default class Emoji extends React.Component {
 }
 Emoji.propTypes = {
   buttonColour: PropTypes.oneOf(["primary", "secondary", "default"]),
+  onEmojiSelect: PropTypes.func,
 };

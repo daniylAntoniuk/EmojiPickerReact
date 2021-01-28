@@ -1,6 +1,6 @@
 {
   "name": "miracle-emoji-picker-react",
-  "version": "0.0.73",
+  "version": "0.0.82",
   "babel": {
     "presets": [
       "@babel/preset-react"

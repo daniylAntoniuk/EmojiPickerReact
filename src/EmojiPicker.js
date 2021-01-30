@@ -138,7 +138,7 @@ export default class Emoji extends React.Component {
                 );
               })}
             </Grid>
-        </Menu>
+        </Menu> 
       </>
     );
   }
